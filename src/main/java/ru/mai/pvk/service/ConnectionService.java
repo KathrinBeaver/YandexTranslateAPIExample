@@ -1,14 +1,18 @@
-package main.java.ru.mai.pvk;
+package main.java.ru.mai.pvk.service;
 
 import javax.net.ssl.HttpsURLConnection;
-import java.net.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
-public class URLConnectionReader {
+public class ConnectionService {
     private String urlString;
     private String replyString = "";
 
-    public URLConnectionReader(String url)
+    public ConnectionService(String url)
     {
         urlString = url;
     }
@@ -36,7 +40,7 @@ public class URLConnectionReader {
                 replyString = response.toString();
             } else {
                 System.out.println("GET request not worked");
-                replyString = "Error!";
+                replyString = null;
             }
 
         } catch (MalformedURLException ex) {
@@ -44,9 +48,8 @@ public class URLConnectionReader {
         } catch (IOException ex) {
             //Todo: Process exception
         } catch (Exception ex) {
-            replyString = ex.toString();
+            //Todo: Process exception
         }
-
         return replyString;
     }
 }
